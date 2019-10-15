@@ -61,28 +61,26 @@ class Home extends StatelessWidget {
                 ],
               ),
               bottomNavigationBar: BottomNavigationBar(
-                selectedIconTheme: IconThemeData(
-                  color: THEME_COLOR
-                ),
-                selectedLabelStyle: TextStyle(
-                  color: THEME_COLOR
-                ),
+                selectedItemColor: THEME_COLOR,
                 items: const <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
                     icon: Icon(Icons.home),
-                    title: Text('Home'),
+                    title: Text('首页'),
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.business),
-                    title: Text('Business'),
+                    title: Text('频道'),
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.school),
-                    title: Text('School'),
+                    title: Text('动态'),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.credit_card),
+                    title: Text('会员购'),
                   ),
                 ],
                 currentIndex: 0,
-                selectedItemColor: Colors.amber[800],
                 onTap: (index) {},
               ))),
     );
