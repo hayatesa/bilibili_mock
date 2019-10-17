@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   Route onGenerateRoute(RouteSettings settings) {
     for (AppRouter route in routes) {
       if(settings.name == route.name) {
-        return route.pageRouteBuilder(settings);
+        return route.build(settings);
       }
     }
     return StaticPageRoute(settings, NotFound());

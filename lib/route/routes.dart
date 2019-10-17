@@ -8,8 +8,8 @@ import 'package:bilibli_mock/views/not_found.dart';
 
 class AppRouter {
   final String name;
-  final Function pageRouteBuilder;
-  const AppRouter(this.name, this.pageRouteBuilder);
+  final Function build;
+  const AppRouter(this.name, this.build);
 }
 
 List routes = [
