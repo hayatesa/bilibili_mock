@@ -1,10 +1,22 @@
+import 'package:bilibli_mock/route/routes.dart';
+import 'package:bilibli_mock/route/static_page_route.dart';
+import 'package:bilibli_mock/views/not_found.dart';
 import 'package:flutter/material.dart';
-import 'package:bilibli_mock/views/home.dart';
+
 
 main() => runApp(App());
 
 class App extends StatelessWidget {
   const App({Key key}) : super(key: key);
+
+  Route onGenerateRoute(RouteSettings settings) {
+    for (AppRouter route in routes) {
+      if(settings.name == route.name) {
+        return route.pageRouteBuilder(settings);
+      }
+    }
+    return StaticPageRoute(settings, NotFound());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +26,8 @@ class App extends StatelessWidget {
           primaryColor: Color.fromARGB(255, 255, 255, 255)
         ),
         title: 'Bilibili',
-        initialRoute: '/',
-        routes: {
-          '/': (context) => Home()
-        },
+        initialRoute: '/home',
+        onGenerateRoute: onGenerateRoute,
       ),
     );
   }
