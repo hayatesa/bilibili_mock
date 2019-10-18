@@ -12,11 +12,9 @@ class BaseLayout extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _BaseLayoutState();
   }
-
 }
 
 class _BaseLayoutState extends State<BaseLayout> {
-
   String name;
   int count = 0;
   int currentIndex = 0;
@@ -37,34 +35,36 @@ class _BaseLayoutState extends State<BaseLayout> {
         length: 6,
         child: Scaffold(
           appBar: AppBar(
+            centerTitle: true,
             leading: Builder(
               builder: (context) => GestureDetector(
                 onTap: () {
                   Scaffold.of(context).openDrawer();
                 },
                 child: Container(
-                    width: 120,
-                    child: Row(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/trible_line.png',
-                          height: 12,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 12),
-                          child: ClipOval(
-                            child: Image.asset(
-                              'assets/images/default_avatar.png',
-                              height: 36,
-                              width: 36,
-                            ),
+                  width: 120,
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/images/trible_line.png',
+                        height: 12,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 12),
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/images/default_avatar.png',
+                            height: 36,
+                            width: 36,
                           ),
-                        )
-                      ],
-                    )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-            elevation: 0,
+            elevation: 0, // 标题栏阴影
             title: widget.title,
             bottom: widget.tabBar,
           ),
@@ -75,7 +75,7 @@ class _BaseLayoutState extends State<BaseLayout> {
                 DrawerHeader(
                   child: Text('Drawer Header'),
                   decoration: BoxDecoration(
-                    color: LIGHT_GREY,
+                    color: GREY_LIGHT,
                   ),
                 ),
                 ListTile(
@@ -90,7 +90,7 @@ class _BaseLayoutState extends State<BaseLayout> {
                   leading: Icon(Icons.history),
                   title: Text('历史记录'),
                   onTap: () {
-                    // Navigator.pop(context);
+                    Navigator.pushNamed(context, '/404');
                   },
                 ),
                 ListTile(
@@ -192,7 +192,7 @@ class _BaseLayoutState extends State<BaseLayout> {
           body: widget.body,
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: PRIMARY_PINK,
+            selectedItemColor: PINK_PRIMARY,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -214,7 +214,8 @@ class _BaseLayoutState extends State<BaseLayout> {
             currentIndex: currentIndex >= 0 ? currentIndex : 0,
             onTap: (index) {
               name = routes[index];
-              Navigator.pushNamedAndRemoveUntil(context, name, (route) => route == null);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, name, (route) => route == null);
               // Navigator.push(context, MaterialPageRoute(builder: (context) => Channel()));
               setState(() {});
             },

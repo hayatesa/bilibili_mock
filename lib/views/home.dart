@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
               child: Container(
                 padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
                 decoration: BoxDecoration(
-                  color: LIGHT_GREY,
+                  color: GREY_LIGHT,
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: GestureDetector(
@@ -37,11 +37,16 @@ class _HomeState extends State<Home> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.only(left: 8),
-                          child: Text(
-                            '沙画神还原《清明上河图》',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: MID_GREY,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/search');
+                            },
+                            child: Text(
+                              '沙画神还原《清明上河图》',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: GREY_MID,
+                              ),
                             ),
                           ),
                         ),
@@ -70,14 +75,14 @@ class _HomeState extends State<Home> {
       ),
       tabBar: TabBar(
         labelPadding: EdgeInsets.only(left: 0, right: 0),
-        labelColor: PRIMARY_PINK,
-        unselectedLabelColor: PRIMARY_GREY,
+        labelColor: PINK_PRIMARY,
+        unselectedLabelColor: GREY_PRIMARY,
         labelStyle: TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.bold,
         ),
-        unselectedLabelStyle: TextStyle(fontSize: 16.0, color: PRIMARY_GREY),
-        indicatorColor: PRIMARY_PINK,
+        unselectedLabelStyle: TextStyle(fontSize: 16.0, color: GREY_PRIMARY),
+        indicatorColor: PINK_PRIMARY,
         indicatorSize: TabBarIndicatorSize.label,
         indicatorWeight: 3.0,
         tabs: <Widget>[
