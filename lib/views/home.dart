@@ -1,17 +1,13 @@
 import 'package:bilibli_mock/contants/theme.dart';
+import 'package:bilibli_mock/state/app_state.dart';
 import 'package:bilibli_mock/widgets/base_layout.dart';
+import 'package:bilibli_mock/widgets/search.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({Key key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() {
-    return _HomeState();
-  }
-}
-
-class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return BaseLayout(
@@ -19,40 +15,12 @@ class _HomeState extends State<Home> {
         child: Row(
           children: <Widget>[
             Expanded(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
-                decoration: BoxDecoration(
-                  color: GREY_LIGHT,
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Row(
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/images/search.png',
-                        height: 18,
-                        width: 18,
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.only(left: 8),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/search');
-                            },
-                            child: Text(
-                              '沙画神还原《清明上河图》',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: GREY_MID,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+              child: Consumer<AppState>(
+                builder: (context, AppState state, child) => SearchLikeButton(
+                  title: state.searchKeyword,
+                  onTap: () {
+                    Navigator.pushNamed(context, '/search');
+                  },
                 ),
               ),
             ),
@@ -74,6 +42,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       tabBar: TabBar(
+        onTap: (index) {},
         labelPadding: EdgeInsets.only(left: 0, right: 0),
         labelColor: PINK_PRIMARY,
         unselectedLabelColor: GREY_PRIMARY,
@@ -94,14 +63,16 @@ class _HomeState extends State<Home> {
           Tab(text: '70年'),
         ],
       ),
-      body: TabBarView(children: [
-        Center(child: Text('直播')),
-        Center(child: Text('推荐')),
-        Center(child: Text('热门')),
-        Center(child: Text('追番')),
-        Center(child: Text('影视')),
-        Center(child: Text('70年')),
-      ]),
+      body: TabBarView(
+        children: [
+          Center(child: Text('直播')),
+          Center(child: Text('推荐')),
+          Center(child: Text('热门')),
+          Center(child: Text('追番')),
+          Center(child: Text('影视')),
+          Center(child: Text('70年')),
+        ],
+      ),
     );
   }
 }

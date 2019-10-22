@@ -1,15 +1,16 @@
 import 'package:bilibli_mock/contants/theme.dart';
+import 'package:bilibli_mock/state/app_state.dart';
+import 'package:bilibli_mock/widgets/search.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Search extends StatefulWidget {
+class Search extends StatelessWidget {
   Search({Key key}) : super(key: key);
 
-  _SearchState createState() => _SearchState();
-}
-
-class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
+    final _state = Provider.of<AppState>(context);
+
     return Container(
       child: Scaffold(
         appBar: AppBar(
@@ -18,47 +19,13 @@ class _SearchState extends State<Search> {
           title: Row(
             children: <Widget>[
               Expanded(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
-                  decoration: BoxDecoration(
-                    color: GREY_LIGHT,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/search.png',
-                          height: 18,
-                          width: 18,
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.only(left: 8),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/search');
-                              },
-                              child: Text(
-                                '沙画神还原《清明上河图》',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: GREY_MID,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                child: SearchLikeButton(
+                  title: _state.searchKeyword,
+                  onTap: () => print('search'),
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () => Navigator.pop(context),
                 child: Container(
                   padding: EdgeInsets.only(left: 16),
                   child: Text(
@@ -74,7 +41,27 @@ class _SearchState extends State<Search> {
           ),
         ),
         body: Column(
-          children: <Widget>[],
+          children: <Widget>[
+            Consumer<AppState>(
+              builder: (BuildContext context, AppState state, Widget child) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () => state.setSearchKeyword('查找精彩动态内容'),
+                    child: Text('动态'),
+                  ),
+                  FlatButton(
+                    onPressed: () => state.setSearchKeyword('写文章'),
+                    child: Text('文章'),
+                  ),
+                  FlatButton(
+                    onPressed: () => state.setSearchKeyword('写代码'),
+                    child: Text('代码'),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

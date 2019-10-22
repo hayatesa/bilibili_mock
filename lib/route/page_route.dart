@@ -94,7 +94,7 @@ class LeftSlidePageRoute extends PageRouteBuilder {
       : super(
             settings: settings,
             // 设置过度时间
-            transitionDuration: Duration(milliseconds: 300),
+            transitionDuration: Duration(milliseconds: 400),
             // 构造器
             pageBuilder: (
               // 上下文和动画

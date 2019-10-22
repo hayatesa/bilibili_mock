@@ -20,5 +20,5 @@ List routes = [
   AppRoute('/moment',  (settings) => StaticPageRoute(settings, Moment())),
   AppRoute('/buy',  (settings) => StaticPageRoute(settings, Buy())),
   AppRoute('/search',  (settings) => LeftSlidePageRoute(settings, Search())),
-  AppRoute('/404',  (settings) => StaticPageRoute(settings, NotFound())),
+  AppRoute('/404',  (settings) => LeftSlidePageRoute(settings, NotFound())),
 ];

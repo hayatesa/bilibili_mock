@@ -11,18 +11,10 @@ class NotFound extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            '404 Not Found',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-              decoration: TextDecoration.none,
-            ),
-          ),
           RaisedButton(
             color: Colors.white,
             shape: CircleBorder(),
-            child: Icon(Icons.arrow_back, color: PINK_PRIMARY,),
+            child: Icon(Icons.arrow_back, color: PINK_PRIMARY, size: 100,),
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(
                   context, '/home', (route) => route == null);

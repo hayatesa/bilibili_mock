@@ -27,9 +27,7 @@ class _BaseLayoutState extends State<BaseLayout> {
 
   @override
   Widget build(BuildContext context) {
-    name = ModalRoute.of(context).settings.name;
-    currentIndex = routes.indexOf(name);
-    print(name);
+    currentIndex = routes.indexOf(ModalRoute.of(context).settings.name);
     return Container(
       child: DefaultTabController(
         length: 6,
@@ -90,6 +88,7 @@ class _BaseLayoutState extends State<BaseLayout> {
                   leading: Icon(Icons.history),
                   title: Text('历史记录'),
                   onTap: () {
+                    Navigator.pop(context);
                     Navigator.pushNamed(context, '/404');
                   },
                 ),
@@ -145,42 +144,42 @@ class _BaseLayoutState extends State<BaseLayout> {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.live_tv),
+                  leading: Icon(Icons.star_border),
                   title: Text('BW 成就'),
                   onTap: () {
                     // Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.live_tv),
+                  leading: Icon(Icons.sim_card),
                   title: Text('免流量服务'),
                   onTap: () {
                     // Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.live_tv),
+                  leading: Icon(Icons.security),
                   title: Text('青少年模式'),
                   onTap: () {
                     // Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.live_tv),
+                  leading: Icon(Icons.assignment),
                   title: Text('我的订单'),
                   onTap: () {
                     // Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.live_tv),
+                  leading: Icon(Icons.shopping_basket),
                   title: Text('会员购中心'),
                   onTap: () {
                     // Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.live_tv),
+                  leading: Icon(Icons.headset_mic),
                   title: Text('联系客服'),
                   onTap: () {
                     // Navigator.pop(context);
@@ -192,6 +191,7 @@ class _BaseLayoutState extends State<BaseLayout> {
           body: widget.body,
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
+            unselectedItemColor: GREY_MID,
             selectedItemColor: PINK_PRIMARY,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
@@ -216,8 +216,6 @@ class _BaseLayoutState extends State<BaseLayout> {
               name = routes[index];
               Navigator.pushNamedAndRemoveUntil(
                   context, name, (route) => route == null);
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => Channel()));
-              setState(() {});
             },
           ),
         ),
