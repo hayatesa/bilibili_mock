@@ -2,10 +2,12 @@ import 'package:bilibli_mock/contants/theme.dart';
 import 'package:flutter/material.dart';
 
 class BaseLayout extends StatefulWidget {
-  BaseLayout({Key key, this.title, this.tabBar, this.body}) : super(key: key);
+  BaseLayout({Key key, this.title, this.tabBar, this.tabLength, this.body})
+      : super(key: key);
 
   final Widget title;
   final Widget tabBar;
+  final int tabLength;
   final Widget body;
 
   @override
@@ -30,7 +32,7 @@ class _BaseLayoutState extends State<BaseLayout> {
     currentIndex = routes.indexOf(ModalRoute.of(context).settings.name);
     return Container(
       child: DefaultTabController(
-        length: 6,
+        length: widget.tabLength ?? 1,
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,

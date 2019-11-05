@@ -41,6 +41,7 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
+      tabLength: 5,
       tabBar: TabBar(
         onTap: (index) {},
         labelPadding: EdgeInsets.only(left: 0, right: 0),
@@ -60,7 +61,6 @@ class Home extends StatelessWidget {
           Tab(text: '热门'),
           Tab(text: '追番'),
           Tab(text: '影视'),
-          Tab(text: '70年'),
         ],
       ),
       body: TabBarView(
@@ -70,7 +70,6 @@ class Home extends StatelessWidget {
           Center(child: Text('热门')),
           Center(child: Text('追番')),
           Center(child: Text('影视')),
-          Center(child: Text('70年')),
         ],
       ),
     );
